@@ -1,8 +1,9 @@
 #root {
   --bg-color:#b0d3bf;
+  --white-color:blanchedalmond;
   --accent-color:#589d62;
   --green-color:#63a91f;
-  --font-color:#fff;
+  --font-color:black;
 }
 * {
   padding: 0px;
@@ -104,6 +105,25 @@ label {
 
 legend {
   display: block;
+}
+*{
+  font-family: 'Hanuman', serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+h1{
+  font-size: 60px;
+}
+h2{
+  font-size: 40px;
+}
+
+h1,h2{
+
+  font-weight: 700;
+}
+body{
+  background-color: var(--bg-color);
 }
 
 
