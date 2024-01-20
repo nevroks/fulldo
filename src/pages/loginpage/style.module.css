@@ -1,3 +1,21 @@
 .page{
-
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    border: 2px dashed var(--white-color);
+    padding: 15px;
 }
