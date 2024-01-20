@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./style.module.css";
 const Input = ({placeholder,...props}) => {
     return (
-        <input {...props} placeholder={placeholder} />
+        <input className={classes.input} {...props} placeholder={placeholder} />
     );
 };
 
