@@ -8,7 +8,7 @@ import AuthProvider from "./providers/AuthProvider.tsx";
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <AuthProvider>
         <BrowserRouter>
-                <App />,
+                <App />
         </BrowserRouter>
     </AuthProvider>
 

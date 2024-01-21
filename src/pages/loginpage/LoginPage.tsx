@@ -3,14 +3,17 @@ import classes from "./style.module.css";
 import Input from "../../components/ui/input/Input.tsx";
 import Button from "../../components/ui/button/Button.tsx";
 import {AuthContext} from "../../providers/AuthProvider.tsx";
+import {useNavigate} from "react-router-dom";
 
 const LoginPage = () => {
+    const navigate = useNavigate();
     const {setIsAuthorized,isAuthorized}=useContext(AuthContext)
-    console.log(isAuthorized)
     useEffect(()=>{
-            if (localStorage.length>0){
+            if (localStorage.getItem("user") !== null){
                 setIsAuthorized(true)
+                navigate("/homepage")
             }
+
         },[])
     const [user,setUser]=useState({
         login:"",
