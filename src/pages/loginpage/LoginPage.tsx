@@ -1,20 +1,26 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./style.module.css";
 import Input from "../../components/ui/input/Input.tsx";
 import Button from "../../components/ui/button/Button.tsx";
-import {AuthContext} from "../../providers/AuthProvider.tsx";
+
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleAuth} from "../../store/auth/counterSlice.ts";
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const {setIsAuthorized,isAuthorized}=useContext(AuthContext)
+    const isAuth = useSelector(state => state.auth.value)
+    const dispatch = useDispatch()
+    console.log(isAuth)
     useEffect(()=>{
+            if (isAuth===true){
+                navigate("/")
+            }
             if (localStorage.getItem("user") !== null){
-                setIsAuthorized(true)
-                navigate("/homepage")
+                dispatch(toggleAuth())
             }
 
-        },[])
+        },)
     const [user,setUser]=useState({
         login:"",
         password:""
