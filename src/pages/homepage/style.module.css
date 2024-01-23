@@ -1,0 +1,13 @@
+.page{
+    background-color: rgba(50, 73, 8, 0.8);
+    padding: 0 calc(50% - 700px);
+}
+.page__content{
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 40px;
+    height: 100%;
+}
