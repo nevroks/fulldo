@@ -2,7 +2,7 @@ import './App.css'
 
 import {Route, Routes, useNavigate} from "react-router-dom";
 import LoginPage from "./pages/loginpage/LoginPage.tsx";
-import {useContext, useEffect} from "react";
+import {useEffect} from "react";
 
 import Layout from "./components/layout/Layout.tsx";
 import HomePage from "./pages/homepage/HomePage.tsx";
@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 
 
 function App() {
-    const isAuth=useSelector(state => state.auth)
+    const isAuth=useSelector(state => state.auth.value)
 
     const navigate = useNavigate()
     useEffect(()=>{
@@ -22,10 +22,10 @@ function App() {
   return (
     <>
         <Routes>
-                <Route path={"/"} element={<Layout/>}>
+            <Route path={"/login"} element={<LoginPage/>}/>
+            {isAuth && <Route path={"/"} element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
-                    <Route path={"login"} element={<LoginPage/>}/>
-                </Route>
+                </Route>}
         </Routes>
     </>
   )
