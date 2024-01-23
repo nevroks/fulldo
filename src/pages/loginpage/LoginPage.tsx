@@ -25,6 +25,17 @@ const LoginPage = () => {
         login:"",
         password:""
     })
+    const setNewUser = ()=>{
+        if (user.login.length < 5){
+            alert("Login needs to be at least longer than 5 chars or more!")
+            return
+        }
+        if (user.password.length <= 4){
+            alert("Password needs to be longer than 4 chars!")
+            return
+        }
+        localStorage.setItem("user",JSON.stringify(user))
+    }
     return (
         <div className={classes.page}>
             <h1>LoginPage</h1>
@@ -39,9 +50,7 @@ const LoginPage = () => {
                     onChange={e=>setUser({...user,password:e.target.value})}
                     type={"password"}
                     placeholder={"Password"}/>
-                <Button onClick={()=>{
-                    localStorage.setItem("user",JSON.stringify(user))
-                }}>Login</Button>
+                <Button onClick={setNewUser}>Login</Button>
             </form>
         </div>
     );
