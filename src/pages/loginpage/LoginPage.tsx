@@ -5,7 +5,7 @@ import Button from "../../components/ui/button/Button.tsx";
 
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleAuth} from "../../store/auth/counterSlice.ts";
+import {toggleAuth} from "../../store/auth/authSlice.ts";
 
 const LoginPage = () => {
     const navigate = useNavigate();

@@ -12,7 +12,7 @@ import {useSelector} from "react-redux";
 
 function App() {
     const isAuth=useSelector(state => state.auth.value)
-
+     console.log(isAuth)
     const navigate = useNavigate()
     useEffect(()=>{
         if(isAuth===false){
