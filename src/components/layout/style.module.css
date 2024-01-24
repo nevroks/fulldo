@@ -1,0 +1,4 @@
+.layoutS{
+    display: grid;
+    grid-template-rows: 1fr 8fr 1fr;
+}
