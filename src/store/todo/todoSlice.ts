@@ -1,34 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = [
-    {
-    title:'sss',
-        description:'sss'
-    },
-    {
-    title:'sssssss',
-        description:'ssssssssss'
-    }
-    ]
+const initialState = []
 
 export const todoSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        addTodo:(state)=>{
-            state.push({
-              //  В теории
-              //  на самом деле
-              //  я ваще хз
-                title:this.title,
-                description:this.description
-            })
+        addTodo:(state,action)=>{
+            state.push(action.payload)
 
+        },
+        addLoadedTodos:(state,action)=>{
+            action.payload.map(todos=>state.push(todos))
+            state.push(action.payload)
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addTodo } = todoSlice.actions
+export const { addTodo, addLoadedTodos} = todoSlice.actions
 
 export default todoSlice.reducer
