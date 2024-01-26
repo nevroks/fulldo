@@ -1,0 +1,21 @@
+.header{
+    background-color: var(--white-color);
+    padding: 0 calc(50% - 700px);
+}
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    align-items: center;
+}
+.header__content a{
+    color: var(--font-color);
+    transition: color 0.5s;
+}
+.header__content .active{
+    color: gray !important;
+}
+.header__content__links{
+    display: flex;
+    column-gap: 80px;
+}
