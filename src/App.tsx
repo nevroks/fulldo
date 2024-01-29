@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import Layout from "./components/layout/Layout.tsx";
 import HomePage from "./pages/homepage/HomePage.tsx";
 import {useSelector} from "react-redux";
+import TodosPage from "./pages/todospage/TodosPage.tsx";
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <Route path={"/login"} element={<LoginPage/>}/>
             {isAuth && <Route path={"/"} element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
+                    <Route path={"todos"} element={<TodosPage/>}/>
                 </Route>}
         </Routes>
     </>
