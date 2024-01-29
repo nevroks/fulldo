@@ -8,7 +8,7 @@ const Header = () => {
             <nav className={classes.header__content}>
                 <div className={classes.header__content__links}>
                     <NavLink to={"/"}>Homepage</NavLink>
-                    <NavLink to={"/posts"}>Posts</NavLink>
+                    <NavLink to={"/todos"}>Todos</NavLink>
                 </div>
                 <div>
                     <h3>Hello "{user.login}"!</h3>
