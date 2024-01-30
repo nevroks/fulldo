@@ -4,3 +4,18 @@
     padding: 10px 20px;
     font-size: 24px;
 }
+.btn2{
+    border: var(--white-color) 3px;
+    background-color: #e8e8e8;
+    padding: 10px 20px;
+    font-size: 24px;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+.btn2:hover{
+    transform: scale(1.1);
+    background-color: #ffe6c2;
+}
+.btn2:active{
+   bottom: -2px;
+}
