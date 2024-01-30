@@ -7,7 +7,9 @@ const Layout = () => {
     return (
         <div className={classes.layoutS}>
             <Header/>
-            <Outlet/>
+            <div className={classes.page}>
+                <Outlet/>
+            </div>
             <Footer/>
         </div>
     );
