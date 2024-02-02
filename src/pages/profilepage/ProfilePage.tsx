@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import classes from "./style.module.css";
 import {GoPencil} from "react-icons/go";
 import {IUser} from "../../types/types.tsx";
