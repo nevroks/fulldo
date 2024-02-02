@@ -1,6 +1,7 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import classes from "./style.module.css";
+import {FaPencilAlt} from "react-icons/fa";
 const Header = () => {
     const user = JSON.parse(localStorage.getItem("user"))
     return (
@@ -10,8 +11,9 @@ const Header = () => {
                     <NavLink to={"/"}>Homepage</NavLink>
                     <NavLink to={"/todos"}>Todos</NavLink>
                 </div>
-                <div>
+                <div className={classes.header__profile}>
                     <h3>Hello "{user.login}"!</h3>
+                    <Link to={"/profile"}><FaPencilAlt /></Link>
                 </div>
             </nav>
         </header>
