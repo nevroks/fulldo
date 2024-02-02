@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import loginPage from "../../pages/loginpage/LoginPage.tsx";
 
 const initialState = []
 
@@ -10,7 +11,7 @@ export const todoSlice = createSlice({
             state.push(action.payload)
         },
         addLoadedTodos:(state,action)=>{
-            action.payload.map(todos=>state.push(todos))
+            action.payload.map(todo=>state.push(todo))
         },
         deleteTodo:(state,action)=>{
             let index=action.payload
@@ -18,10 +19,16 @@ export const todoSlice = createSlice({
                 state.splice(index, 1);
             }
         },
+        changeTodo:(state,{payload})=>{
+            let index=Number(payload.id)
+            const todo=state.find(todos=>todos.id===index)
+            todo.description=payload.description
+            todo.title=payload.title
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addTodo, addLoadedTodos,deleteTodo} = todoSlice.actions
+export const { addTodo, addLoadedTodos,deleteTodo,changeTodo} = todoSlice.actions
 
 export default todoSlice.reducer
