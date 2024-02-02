@@ -19,3 +19,7 @@
     display: flex;
     column-gap: 80px;
 }
+.header__profile{
+    display: flex;
+    column-gap: 10px;
+}

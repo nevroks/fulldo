@@ -1,4 +1,11 @@
 .layoutS{
+
     display: grid;
-    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-rows: 75px 100% 75px;
+    height: 100vh;
+}
+.page{
+    background-color: rgba(50, 73, 8, 0.8);
+    padding: 0 calc(50% - 700px);
+    height: 100%;
 }
