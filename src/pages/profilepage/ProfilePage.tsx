@@ -5,10 +5,11 @@ import {IUser} from "../../types/types.tsx";
 import Input from "../../components/ui/input/Input.tsx";
 import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 import Button2 from "../../components/ui/button/Button2.tsx";
+import UseLocalStorage from "../../hooks/UseLocalStorage.tsx";
 
 
 const ProfilePage = () => {
-    const user=JSON.parse(localStorage.getItem("user"))
+    const user=UseLocalStorage({method:"get",key:"user"})
     const [modUser,setModUser]=useState<IUser>({
         login:user.login,
         password:user.password

@@ -1,16 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import classes from "./style.module.css";
 import Input from "../../components/ui/input/Input.tsx";
 import Button from "../../components/ui/button/Button.tsx";
 
 import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {toggleAuth} from "../../store/auth/authSlice.ts";
+import {IUser} from "../../types/types.tsx";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 
-const LoginPage = () => {
+
+const LoginPage:FC = () => {
     const navigate = useNavigate();
-    const isAuth = useSelector(state => state.auth.value)
-    const dispatch = useDispatch()
+    const isAuth = useAppSelector(state => state.auth.value)
+    const dispatch = useAppDispatch()
     console.log(isAuth)
     useEffect(()=>{
             if (isAuth===true){
@@ -21,7 +23,7 @@ const LoginPage = () => {
             }
 
         },)
-    const [user,setUser]=useState({
+    const [user,setUser]=useState<IUser>({
         login:"",
         password:""
     })

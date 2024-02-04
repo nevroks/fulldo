@@ -6,15 +6,15 @@ import {useEffect} from "react";
 
 import Layout from "./components/layout/Layout.tsx";
 import HomePage from "./pages/homepage/HomePage.tsx";
-import {useSelector} from "react-redux";
 import TodosPage from "./pages/todospage/TodosPage.tsx";
 import TodoPage from "./pages/todopage/TodoPage.tsx";
 import ProfilePage from "./pages/profilepage/ProfilePage.tsx";
+import {useAppSelector} from "./hooks/reduxHooks.ts";
 
 
 
 function App() {
-    const isAuth=useSelector(state => state.auth.value)
+    const isAuth=useAppSelector(state => state.auth.value)
      console.log(isAuth)
     const navigate = useNavigate()
     useEffect(()=>{
