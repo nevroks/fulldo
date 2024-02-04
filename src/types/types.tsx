@@ -5,6 +5,8 @@ export interface IUser
 }
 export interface ITodo
 {
+    id?:number | string,
     title:string,
-    description:string
+    description:string,
+    completed:boolean
 }
