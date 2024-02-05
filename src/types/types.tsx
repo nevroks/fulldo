@@ -8,5 +8,5 @@ export interface ITodo
     id?:number | string,
     title:string,
     description:string,
-    completed:boolean
+    completed?:boolean
 }
