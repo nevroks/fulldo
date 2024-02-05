@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import Header from "./header/Header.tsx";
 import {Outlet} from "react-router-dom";
 import Footer from "./footer/Footer.tsx";
@@ -8,7 +8,9 @@ const Layout = () => {
         <div className={classes.layoutS}>
             <Header/>
             <div className={classes.page}>
-                <Outlet/>
+                <Suspense>
+                    <Outlet/>
+                </Suspense>
             </div>
             <Footer/>
         </div>

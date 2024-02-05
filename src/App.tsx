@@ -2,20 +2,20 @@ import './App.css'
 
 import {Route, Routes, useNavigate} from "react-router-dom";
 import LoginPage from "./pages/loginpage/LoginPage.tsx";
-import {useEffect} from "react";
+import {lazy, useEffect} from "react";
 
 import Layout from "./components/layout/Layout.tsx";
-import HomePage from "./pages/homepage/HomePage.tsx";
-import TodosPage from "./pages/todospage/TodosPage.tsx";
-import TodoPage from "./pages/todopage/TodoPage.tsx";
-import ProfilePage from "./pages/profilepage/ProfilePage.tsx";
+
+const HomePage = lazy(()=>import("./pages/homepage/HomePage.tsx"))
+const TodosPage = lazy(()=>import("./pages/todospage/TodosPage.tsx"))
+const TodoPage = lazy(()=>import("./pages/todopage/TodoPage.tsx"))
+const ProfilePage = lazy(()=>import("./pages/profilepage/ProfilePage.tsx"))
 import {useAppSelector} from "./hooks/reduxHooks.ts";
 
 
 
 function App() {
     const isAuth=useAppSelector(state => state.auth.value)
-     console.log(isAuth)
     const navigate = useNavigate()
     useEffect(()=>{
         if(isAuth===false){
