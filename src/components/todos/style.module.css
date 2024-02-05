@@ -10,9 +10,20 @@
     border: black 5px solid;
    justify-content: space-between;
 }
+.todo_done{
+    display: flex;
+    padding: 5px 15px;
+    border: black 5px solid;
+    justify-content: space-between;
+    opacity: 0.5;
+}
 .content button{
     outline: none;
     background-color: #e8e8e8;
     padding: 10px 20px;
     font-size: 24px;
+}
+.btn__checkbox{
+    display: flex;
+    flex-direction: column;
 }
