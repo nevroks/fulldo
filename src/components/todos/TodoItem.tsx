@@ -8,11 +8,12 @@ import {ITodo} from "../../types/types.tsx";
 
 const TodoItem:FC<ITodo> = ({id,description,title}) => {
     const dispatch=useAppDispatch()
-    let checked
-    const handleClick=()=>{
-        const todo=dispatch(getTodoById(id))
-        checked=todo.completed
-        // dispatch(toggleComplete(todo))
+
+    const todo=useAppSelector(state => state.todo[id])
+    let checked=todo.completed
+    const handleChange=()=>{
+        dispatch(toggleComplete(todo))
+
     }
 
     return (
@@ -31,7 +32,7 @@ const TodoItem:FC<ITodo> = ({id,description,title}) => {
                 </div>
                 <div>
                     <label htmlFor={`isComp${id}`}>Is Completed?</label>
-                    <input onClick={handleClick} checked={checked} id={`isComp${id}`} type={"checkbox"}/>
+                    <input onChange={handleChange} checked={todo.completed} id={`isComp${id}`} type={"checkbox"}/>
                 </div>
             </div>
 

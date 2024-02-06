@@ -1,21 +1,26 @@
-import React, {useState} from 'react';
+import React, {EventHandler, useState} from 'react';
 import classes from "./style.module.css";
 import TodosList from "../../components/todos/TodosList.tsx";
 import Button from "../../components/ui/button/Button.tsx";
 import Input from "../../components/ui/input/Input.tsx";
-import {useDispatch, useSelector} from "react-redux";
 import {addTodo} from "../../store/todo/todoSlice.ts";
 import {addLoadedTodos} from "../../store/todo/todoSlice.ts";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { IoArrowDown } from "react-icons/io5";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
+import {ITodo} from "../../types/types.tsx";
 const TodosPage = () => {
-    const todos=useSelector(state => state.todo)
+    const todos=useAppSelector(state => state.todo)
     const [popUp,setPopUp]=useState(false)
-    const [newTodo,setNewTodo]=useState({
+    const [newTodo,setNewTodo]=useState<ITodo>({
         title:'',
         description:'',
-        id:todos.length
+        id:todos.length,
+        completed:false
+
     })
+
+    console.log(newTodo)
     const [selectAction,setSelectAction]=useState('Save')
     function acceptHandler(e) {
         e.preventDefault()
@@ -33,7 +38,7 @@ const TodosPage = () => {
                 break
         }
     }
-    const dispatch=useDispatch()
+    const dispatch=useAppDispatch()
     return (
             <div className={classes.page__content}>
                 <div className={classes.page__content__navigation}>
@@ -54,6 +59,7 @@ const TodosPage = () => {
                     </form>
                     <Button onClick={()=>{
                         setPopUp(true)
+                        setNewTodo({...newTodo,id:todos.length})
                     }}>Create new</Button>
                 </div>
 
@@ -69,11 +75,13 @@ const TodosPage = () => {
                             onChange={e=>setNewTodo({...newTodo,description:e.target.value})}
                             placeholder={"description"}/>
                         <Button onClick={()=>{
+                            dispatch(addTodo(newTodo))
                             setNewTodo({
                                 title:'',
-                                description:''
+                                description:'',
+                                id:0,
+                                completed:false
                             })
-                            dispatch(addTodo(newTodo))
                             setPopUp(false)
                         }}>Apply</Button>
                     </div>
