@@ -1,28 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from "./style.module.css";
-import {useDispatch, useSelector} from "react-redux";
 
-import {deleteTodo} from "../../store/todo/todoSlice.ts";
-import Button2 from "../ui/button/Button2.tsx";
-import {Link} from "react-router-dom";
+
+import { useAppSelector} from "../../hooks/reduxHooks.ts";
+import TodoItem from "./TodoItem.tsx";
+
 
 const TodosList = () => {
-    const todos = useSelector(state => state.todo)
-    const dispatch=useDispatch()
+    const todos = useAppSelector(state => state.todo)
 
     return (
         <div className={classes.content}>
             {todos.map((todo)=>{
-                return <div className={classes.todo} key={todo.id}>
-                    <div>
-                        <h2>Title:{todo.title}</h2>
-                        <p>Description:{todo.description}</p>
-                    </div>
-                    <div>
-                        <Button2 onClick={()=>dispatch(deleteTodo(todo.id))}>Delete</Button2>
-                        <Button2><Link to={`/todos/${todo.id}`}>More</Link></Button2>
-                    </div>
-                </div>
+                return <TodoItem id={todo.id} description={todo.description} title={todo.title} key={todo.id}/>
             })}
         </div>
     );
