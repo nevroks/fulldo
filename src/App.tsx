@@ -22,6 +22,14 @@ function App() {
             navigate("/login")
         }
     },[isAuth])
+    window.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+            document.title = "Вернись 🙁\n"
+        } else {
+            document.title = "Больше так не делай"
+            setTimeout(()=>{document.title = "Fulldo"},3000)
+        }
+    });
   return (
     <>
         <Routes>
