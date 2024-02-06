@@ -15,7 +15,8 @@ const TodoPage = () => {
     const [modTodo,setModTodo]=useState<ITodo>({
         id: id,
         title:todo.title,
-        description:todo.description
+        description:todo.description,
+        createdAt:Date.now()
     })
     const [isChanging,setIsChanging]=useState({
         title:false,
@@ -30,7 +31,16 @@ const TodoPage = () => {
             return
         }
     }
-    console.log(todo)
+    const createdAt = new Date(todo.createdAt,).toLocaleString('eng',
+        {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour:'numeric',
+            minute:"numeric"
+
+
+        });
     return (
         <div className={classes.page}>
             <Button2 onClick={()=>navigate(-1)}>Go back</Button2>
@@ -48,6 +58,7 @@ const TodoPage = () => {
                     <div><Input value={modTodo.description} onChange={e=>setModTodo({...modTodo,description:e.target.value})} placeholder={"Description"}/><button onClick={()=>setIsChanging({...isChanging,description:false})}><IoIosCheckmarkCircleOutline/></button></div>
 
                 }
+                <p>{String(createdAt)}</p>
 
                 <Button2 onClick={()=>ConfirmChanges()}>Confirm</Button2>
             </div>

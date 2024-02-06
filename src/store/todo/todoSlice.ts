@@ -26,6 +26,7 @@ export const todoSlice = createSlice({
             if (todo){
                 todo.description=payload.description
                 todo.title=payload.title
+                todo.createdAt=payload.createdAt
             }
         },
         toggleComplete:(state,{payload}:PayloadAction<ITodo>)=>{

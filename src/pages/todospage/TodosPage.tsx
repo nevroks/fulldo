@@ -9,6 +9,7 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import { IoArrowDown } from "react-icons/io5";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 import {ITodo} from "../../types/types.tsx";
+import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
 const TodosPage = () => {
     const todos=useAppSelector(state => state.todo)
     const [popUp,setPopUp]=useState(false)
@@ -16,13 +17,13 @@ const TodosPage = () => {
         title:'',
         description:'',
         id:todos.length,
-        completed:false
-
+        completed:false,
+        createdAt:Date.now()
     })
 
     console.log(newTodo)
     const [selectAction,setSelectAction]=useState('Save')
-    function acceptHandler(e) {
+    function acceptHandler(e:React.ChangeEvent<HTMLButtonElement>) {
         e.preventDefault()
 
         switch (selectAction){
@@ -33,7 +34,7 @@ const TodosPage = () => {
                 localStorage.removeItem("saved todos")
                 break
             case "Load saved todos":
-                const loadedTodos=JSON.parse(localStorage.getItem("saved todos"))
+                const loadedTodos=useLocalStorage({method:"get",key:"saved todos"})
                 dispatch(addLoadedTodos(loadedTodos))
                 break
         }
@@ -75,12 +76,14 @@ const TodosPage = () => {
                             onChange={e=>setNewTodo({...newTodo,description:e.target.value})}
                             placeholder={"description"}/>
                         <Button onClick={()=>{
+                            newTodo.createdAt=Date.now()
                             dispatch(addTodo(newTodo))
                             setNewTodo({
                                 title:'',
                                 description:'',
                                 id:0,
-                                completed:false
+                                completed:false,
+                                createdAt:0
                             })
                             setPopUp(false)
                         }}>Apply</Button>
