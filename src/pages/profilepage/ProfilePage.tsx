@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import classes from "./style.module.css";
 import {GoPencil} from "react-icons/go";
 import {IUser} from "../../types/types.tsx";
@@ -6,6 +6,7 @@ import Input from "../../components/ui/input/Input.tsx";
 import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 import Button2 from "../../components/ui/button/Button2.tsx";
 import UseLocalStorage from "../../hooks/UseLocalStorage.tsx";
+import {IoLogOutSharp} from "react-icons/io5";
 
 
 const ProfilePage = () => {
@@ -22,7 +23,16 @@ const ProfilePage = () => {
     const ConfirmChanges =()=>{
         let answer=confirm("Confirm changes,it will change your user profile")
         if (answer){
-            localStorage.setItem("user",JSON.stringify(modUser))
+            UseLocalStorage({method:"set",key:"user",value:modUser})
+            location.reload()
+        }else{
+            return
+        }
+    }
+    const logoutHandler=()=>{
+        let answer=confirm("It will delete your account and todos,continue?")
+        if (answer){
+            localStorage.clear()
             location.reload()
         }else{
             return
@@ -44,7 +54,11 @@ const ProfilePage = () => {
                     <div><Input value={modUser.password} onChange={e=>setModUser({...modUser,password:e.target.value})} placeholder={"Password"}/><button onClick={()=>setIsChanging({...isChanging,password:false})}><IoIosCheckmarkCircleOutline/></button></div>
 
                 }
-                <Button2 onClick={()=>ConfirmChanges()}>Confirm</Button2>
+                <div className={classes.button__container}>
+                    <Button2 onClick={()=>ConfirmChanges()}>Confirm</Button2>
+                    <Button2 variant={"red"} onClick={logoutHandler}>LogOut <IoLogOutSharp /></Button2>
+                </div>
+
             </div>
         </div>
     );
