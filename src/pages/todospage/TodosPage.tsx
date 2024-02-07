@@ -10,18 +10,10 @@ import { IoArrowDown } from "react-icons/io5";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 import {ITodo} from "../../types/types.tsx";
 import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
+import CreateNewTodo from "../../components/todos/CreateNewTodo.tsx";
 const TodosPage = () => {
     const todos=useAppSelector(state => state.todo)
     const [popUp,setPopUp]=useState(false)
-    const [newTodo,setNewTodo]=useState<ITodo>({
-        title:'',
-        description:'',
-        id:todos.length,
-        completed:false,
-        createdAt:Date.now()
-    })
-
-    console.log(newTodo)
     const [selectAction,setSelectAction]=useState('Save')
     function acceptHandler(e:React.ChangeEvent<HTMLButtonElement>) {
         e.preventDefault()
@@ -35,6 +27,10 @@ const TodosPage = () => {
                 break
             case "Load saved todos":
                 const loadedTodos=useLocalStorage({method:"get",key:"saved todos"})
+                if (loadedTodos===null){
+                    alert("There is no saved todos")
+                    return
+                }
                 dispatch(addLoadedTodos(loadedTodos))
                 break
         }
@@ -60,33 +56,13 @@ const TodosPage = () => {
                     </form>
                     <Button onClick={()=>{
                         setPopUp(true)
-                        setNewTodo({...newTodo,id:todos.length})
                     }}>Create new</Button>
                 </div>
 
                 {popUp && <div onClick={()=>setPopUp(false)} className={classes.popUp}>
                     <div onClick={e=>e.stopPropagation()} className={classes.popUp__content}>
                         <h1>Create</h1>
-                        <Input
-                            value={newTodo.title}
-                            onChange={e=>setNewTodo({...newTodo,title:e.target.value})}
-                            placeholder={"title"}/>
-                        <Input
-                            value={newTodo.description}
-                            onChange={e=>setNewTodo({...newTodo,description:e.target.value})}
-                            placeholder={"description"}/>
-                        <Button onClick={()=>{
-                            newTodo.createdAt=Date.now()
-                            dispatch(addTodo(newTodo))
-                            setNewTodo({
-                                title:'',
-                                description:'',
-                                id:0,
-                                completed:false,
-                                createdAt:0
-                            })
-                            setPopUp(false)
-                        }}>Apply</Button>
+                        <CreateNewTodo setPopUp={setPopUp} todos={todos}/>
                     </div>
                 </div>}
                 <TodosList/>
