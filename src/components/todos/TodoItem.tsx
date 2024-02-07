@@ -27,7 +27,7 @@ const TodoItem:FC<ITodo> = ({id,description,title}) => {
             </div>
             <div className={classes.btn__checkbox}>
                 <div>
-                    <Button2 onClick={()=>dispatch(deleteTodo(id))}>Delete</Button2>
+                    <Button2 onClick={()=>dispatch(deleteTodo({id}))}>Delete</Button2>
                     <Button2><Link to={`/todos/${id}`}>More</Link></Button2>
                 </div>
                 <div>
