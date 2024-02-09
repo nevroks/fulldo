@@ -1,0 +1,9 @@
+.select{
+    outline: dashed var(--white-color) 5px !important;
+    background-color: #e8e8e8;
+    padding: 10px 20px;
+    font-size: 24px;
+    appearance: none;
+
+
+}
