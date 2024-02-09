@@ -1,20 +1,25 @@
-import React, {EventHandler, useState} from 'react';
+import React, {EventHandler, useMemo, useState} from 'react';
 import classes from "./style.module.css";
 import TodosList from "../../components/todos/TodosList.tsx";
 import Button from "../../components/ui/button/Button.tsx";
-import Input from "../../components/ui/input/Input.tsx";
-import {addTodo} from "../../store/todo/todoSlice.ts";
 import {addLoadedTodos} from "../../store/todo/todoSlice.ts";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { IoArrowDown } from "react-icons/io5";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
-import {ITodo} from "../../types/types.tsx";
 import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
 import CreateNewTodo from "../../components/todos/CreateNewTodo.tsx";
+import {IUser} from "../../types/types.tsx";
+import Input from "../../components/ui/input/Input.tsx";
+import Select from "../../components/ui/select/Select.tsx";
 const TodosPage = () => {
+    const dispatch=useAppDispatch()
     const todos=useAppSelector(state => state.todo)
     const [popUp,setPopUp]=useState(false)
     const [selectAction,setSelectAction]=useState('Save')
+    const [searchQuery,setSearchQuery]=useState('')
+    const filtredTodos=useMemo(()=>{
+        return [...todos].filter(todo=>todo.title.toLowerCase().includes(searchQuery))
+        }, [todos,searchQuery])
     function acceptHandler(e:React.ChangeEvent<HTMLButtonElement>) {
         e.preventDefault()
 
@@ -35,21 +40,19 @@ const TodosPage = () => {
                 break
         }
     }
-    const dispatch=useAppDispatch()
+
     return (
             <div className={classes.page__content}>
                 <div className={classes.page__content__navigation}>
                     <form className={classes.form}>
                         <div className={classes.select__container}>
-                            <select
-                                className={classes.select}
-                                onChange={e=>setSelectAction(e.target.value)}
-                            >
-                                <option disabled>Chose action:</option>
-                                <option value="Save">Save</option>
-                                <option value="Delete saved todos">Delete saved todos</option>
-                                <option value="Load saved todos">Load saved todos</option>
-                            </select>
+                            <Select
+                                setSelectedAction={setSelectAction}
+                                defaultValue={"Chose action:"}
+                                options={[
+                                {value:"Save",name:"Save"},
+                                {value:"Delete saved todos",name:"Delete saved todos"},
+                                {value:"Load saved todos",name:"Load saved todos"}]}/>
                             <IoArrowDown className={classes.select__arrow}/>
                         </div>
                         <Button onClick={acceptHandler}><IoIosCheckmarkCircle/></Button>
@@ -57,6 +60,10 @@ const TodosPage = () => {
                     <Button onClick={()=>{
                         setPopUp(true)
                     }}>Create new</Button>
+                    <Input
+                        value={searchQuery}
+                        onChange={e=>setSearchQuery(e.target.value)}
+                        placeholder={"Find by title"}/>
                 </div>
 
                 {popUp && <div onClick={()=>setPopUp(false)} className={classes.popUp}>
@@ -65,7 +72,7 @@ const TodosPage = () => {
                         <CreateNewTodo setPopUp={setPopUp} todos={todos}/>
                     </div>
                 </div>}
-                <TodosList/>
+                {filtredTodos.length !== 0 ? <TodosList todos={filtredTodos}/>: <p>There is no todos matching {searchQuery}</p>}
             </div>
     );
 };
