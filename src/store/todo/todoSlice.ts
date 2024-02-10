@@ -15,10 +15,8 @@ export const todoSlice = createSlice({
             action.payload.map(todo=>state.push(todo))
         },
         deleteTodo:(state,action:PayloadAction<ITodo>)=>{
-            let index=action.payload.id
-            if (index !== -1) {
-                state.splice(index, 1);
-            }
+            let index = action.payload.id;
+            state.splice(index,1)
         },
         changeTodo:(state,{payload}:PayloadAction<ITodo>)=>{
             let index=Number(payload.id)
@@ -34,6 +32,7 @@ export const todoSlice = createSlice({
             const todo=state.find(todos=>todos.id===index)
             if (todo){
                 todo.completed=!todo.completed
+
             }
 
         }

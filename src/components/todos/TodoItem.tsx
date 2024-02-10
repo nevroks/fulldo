@@ -18,17 +18,17 @@ const TodoItem:FC<ITodo> = ({id,description,title}) => {
 
     return (
         <div className={checked ? classes.todo_done : classes.todo} key={id}>
-             <div>
-                <h2>Title:{title}</h2>
-                {description.length>=20 ?
-                    <Link to={`/todos/${id}`}>Description:{description.substring(0,20)}...</Link> :
-                    <p>Description:{description}</p>
+             <div className={classes.todo__text__container}>
+                <h2>{title}</h2>
+                {description.length>=30 ?
+                    <Link to={`/todos/${id}`}>{description.substring(0,30)}...</Link> :
+                    <p>{description}</p>
                 }
             </div>
             <div className={classes.btn__checkbox}>
-                <div>
-                    <Button2 onClick={()=>dispatch(deleteTodo({id}))}>Delete</Button2>
-                    <Button2><Link to={`/todos/${id}`}>More</Link></Button2>
+                <div className={classes.btns}>
+                    <Button2 variant={"red"} onClick={()=>dispatch(deleteTodo({id}))}>Delete</Button2>
+                    <Button2 variant={"blue"}><Link style={{color:"white"}} to={`/todos/${id}`}>More</Link></Button2>
                 </div>
                 <div>
                     <label htmlFor={`isComp${id}`}>Is Completed?</label>

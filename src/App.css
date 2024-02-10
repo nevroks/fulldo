@@ -115,7 +115,8 @@ h1{
   font-size: 60px;
 }
 h2{
-  font-size: 40px;
+  line-height: 34px;
+  font-size: 36px;
 }
 
 h1,h2{
@@ -125,7 +126,18 @@ h1,h2{
 body{
   background-color: var(--bg-color);
 }
-
+.homepage_text{
+  color: black;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+}
+.homepage_text li{
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 29px;
+}
 
 
 

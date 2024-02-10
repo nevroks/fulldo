@@ -1,14 +1,23 @@
 .content{
     display: flex;
-    flex-direction: column;
-    row-gap: 40px;
-    padding: 0 50px;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0 30px;
 }
 .todo{
     display: flex;
     padding: 5px 15px;
     border: black 5px solid;
+    background-color: cornsilk;
    justify-content: space-between;
+    width: 650px;
+}
+.todo a{
+    color: black;
+}
+.todo a:hover{
+    transition: all 0.4s;
+    transform: scale(105%);
 }
 .todo_done{
     display: flex;
@@ -16,14 +25,29 @@
     border: black 5px solid;
     justify-content: space-between;
     opacity: 0.5;
+    width: 650px;
 }
+.todo_done a{
+    color: black;
+}
+.todo__text__container{
+   display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .content button{
     outline: none;
     background-color: #e8e8e8;
     padding: 10px 20px;
     font-size: 24px;
 }
+.btns{
+    display: flex;
+    column-gap: 5px;
+}
 .btn__checkbox{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }

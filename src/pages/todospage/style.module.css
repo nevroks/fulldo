@@ -38,10 +38,17 @@
     align-items: center;
     column-gap: 50px;
 }
+.page__content__navigation input{
+    width: 800px;
+    height: 64px;
+}
 .form{
     display: flex;
     align-items: center;
 
+}
+.form svg{
+    padding: 6px 0;
 }
 .select__container{
     position: relative;
@@ -50,7 +57,8 @@
 .select__arrow{
     position: absolute;
     right: 10px;
-    top: 25%;
+    top: 15%;
     pointer-events: none;
 }
+
 

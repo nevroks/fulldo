@@ -3,15 +3,21 @@ import classes from "./style.module.css";
     interface ButtonProps {
         children:React.ReactChild | React.ReactNode
         onClick?:()=>void,
-        variant?:"red"
+        variant?:"red" | "blue"
     }
 const Button2:FC<ButtonProps> = ({children,...props}) => {
     const styledComp={
-        backgroundColor:"none"
+        backgroundColor:"none",
+        color:"black"
     }
-        if (props.variant ==="red"){
+    switch (props.variant) {
+        case "red":
             styledComp.backgroundColor="red"
-        }
+            break
+        case "blue":
+            styledComp.backgroundColor="blue"
+            break
+    }
     return (
         <button
             style={styledComp}

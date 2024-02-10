@@ -8,18 +8,23 @@
     padding: 20px 40px;
     align-items: center;
 }
-.header__content a{
-    color: var(--font-color);
-    transition: color 0.5s;
-}
-.header__content .active{
-    color: gray !important;
-}
 .header__content__links{
     display: flex;
     column-gap: 80px;
 }
+.header__link{
+    color: var(--font-color);
+    transition: color 0.5s;
+}
+.active{
+    transition: color 0.5s;
+    color: gray;
+}
 .header__profile{
     display: flex;
     column-gap: 10px;
+
+}
+.header__profile *{
+    color: var(--font-color);
 }

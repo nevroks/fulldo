@@ -40,7 +40,7 @@ const ProfilePage = () => {
     }
     return (
         <div className={classes.page}>
-            <div><img src="" alt=""/></div>
+            <h2>Profile page</h2>
             <div>
                 {!isChanging.login ?
                     <p>Login:{user.login}(will be:{modUser.login})<button onClick={()=>setIsChanging({...isChanging,login:true})}><GoPencil/></button></p>
