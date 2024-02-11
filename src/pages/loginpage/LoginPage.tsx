@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {toggleAuth} from "../../store/auth/authSlice.ts";
 import {IUser} from "../../types/types.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
+import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
 
 
 const LoginPage:FC = () => {
@@ -18,7 +19,7 @@ const LoginPage:FC = () => {
             if (isAuth===true){
                 navigate("/")
             }
-            if (localStorage.getItem("user") !== null){
+            if (useLocalStorage({method:"get",key:"user"}) !== null){
                 dispatch(toggleAuth())
             }
 
