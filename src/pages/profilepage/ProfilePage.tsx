@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import classes from "./style.module.css";
 import {GoPencil} from "react-icons/go";
 import {IUser} from "../../types/types.tsx";
@@ -10,7 +10,8 @@ import {IoLogOutSharp} from "react-icons/io5";
 
 
 const ProfilePage = () => {
-    const user=UseLocalStorage({method:"get",key:"user"})
+    // @ts-ignore
+    const user:IUser=UseLocalStorage({method:"get",key:"user"})
     const [modUser,setModUser]=useState<IUser>({
         login:user.login,
         password:user.password
@@ -40,25 +41,26 @@ const ProfilePage = () => {
     }
     return (
         <div className={classes.page}>
-            <h2>Profile page</h2>
-            <div>
-                {!isChanging.login ?
-                    <p>Login:{user.login}(will be:{modUser.login})<button onClick={()=>setIsChanging({...isChanging,login:true})}><GoPencil/></button></p>
-                    :
-                    <div><Input value={modUser.login} onChange={e=>setModUser({...modUser,login:e.target.value})} placeholder={"Login"}/><button onClick={()=>setIsChanging({...isChanging,login:false})}><IoIosCheckmarkCircleOutline/></button></div>
+            <div className={classes.content_wrapper}>
+                <h2>Profile page</h2>
+                <div className={classes.profile__text}>
+                    {!isChanging.login ?
+                        <p>Login:{user.login}(will be:{modUser.login})<button onClick={()=>setIsChanging({...isChanging,login:true})}><GoPencil/></button></p>
+                        :
+                        <div><Input value={modUser.login} onChange={e=>setModUser({...modUser,login:e.target.value})} placeholder={"Login"}/><button onClick={()=>setIsChanging({...isChanging,login:false})}><IoIosCheckmarkCircleOutline/></button></div>
 
-                }
-                {!isChanging.password ?
-                    <p>Password:{user.password}(will be:{modUser.password})<button onClick={()=>setIsChanging({...isChanging,password:true})}><GoPencil/></button></p>
-                    :
-                    <div><Input value={modUser.password} onChange={e=>setModUser({...modUser,password:e.target.value})} placeholder={"Password"}/><button onClick={()=>setIsChanging({...isChanging,password:false})}><IoIosCheckmarkCircleOutline/></button></div>
+                    }
+                    {!isChanging.password ?
+                        <p>Password:{user.password}(will be:{modUser.password})<button onClick={()=>setIsChanging({...isChanging,password:true})}><GoPencil/></button></p>
+                        :
+                        <div><Input value={modUser.password} onChange={e=>setModUser({...modUser,password:e.target.value})} placeholder={"Password"}/><button onClick={()=>setIsChanging({...isChanging,password:false})}><IoIosCheckmarkCircleOutline/></button></div>
 
-                }
+                    }
+                </div>
                 <div className={classes.button__container}>
                     <Button2 onClick={()=>ConfirmChanges()}>Confirm</Button2>
                     <Button2 variant={"red"} onClick={logoutHandler}>LogOut <IoLogOutSharp /></Button2>
                 </div>
-
             </div>
         </div>
     );

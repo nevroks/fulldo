@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import  {FC} from 'react';
 import classes from "./style.module.css";
 import {Link} from "react-router-dom";
 import Button2 from "../ui/button/Button2.tsx";
-import {deleteTodo, getTodoById, toggleComplete} from "../../store/todo/todoSlice.ts";
+import {deleteTodo, toggleComplete} from "../../store/todo/todoSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 import {ITodo} from "../../types/types.tsx";
 
@@ -19,7 +19,10 @@ const TodoItem:FC<ITodo> = ({id,description,title}) => {
     return (
         <div className={checked ? classes.todo_done : classes.todo} key={id}>
              <div className={classes.todo__text__container}>
-                <h2>{title}</h2>
+                 {title.length>=30 ?
+                     <Link to={`/todos/${id}`}><h2>{title.substring(0,30)}...</h2> </Link>:
+                     <h2>{title}</h2>
+                 }
                 {description.length>=30 ?
                     <Link to={`/todos/${id}`}>{description.substring(0,30)}...</Link> :
                     <p>{description}</p>
