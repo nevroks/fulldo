@@ -1,13 +1,14 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import classes from "./style.module.css";
 
-
-import { useAppSelector} from "../../hooks/reduxHooks.ts";
 import TodoItem from "./TodoItem.tsx";
 import {ITodo} from "../../types/types.tsx";
 
+interface TodoListProps{
+    todos:Array<ITodo>
+}
 
-const TodosList:FC<ITodo[]> = ({todos}) => {
+const TodosList:FC<TodoListProps> = ({todos}) => {
     return (
         <div className={classes.content}>
             {todos.map((todo)=>
