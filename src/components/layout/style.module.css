@@ -8,4 +8,5 @@
     background-color: khaki;
     padding: 0 calc(50% - 750px);
     height: -webkit-fill-available;
+    min-height: 100vh;
 }
