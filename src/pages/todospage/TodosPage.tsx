@@ -1,4 +1,4 @@
-import React, {EventHandler, useMemo, useState} from 'react';
+import React, { useMemo, useState} from 'react';
 import classes from "./style.module.css";
 import TodosList from "../../components/todos/TodosList.tsx";
 import Button from "../../components/ui/button/Button.tsx";
@@ -6,9 +6,8 @@ import {addLoadedTodos} from "../../store/todo/todoSlice.ts";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { IoArrowDown } from "react-icons/io5";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
-import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
+import useLocalStorage from "../../hooks/UseLocalStorage.ts";
 import CreateNewTodo from "../../components/todos/CreateNewTodo.tsx";
-import {IUser} from "../../types/types.tsx";
 import Input from "../../components/ui/input/Input.tsx";
 import Select from "../../components/ui/select/Select.tsx";
 const TodosPage = () => {
@@ -22,7 +21,7 @@ const TodosPage = () => {
         }, [todos,searchQuery])
     function acceptHandler(e:React.ChangeEvent<HTMLButtonElement>) {
         e.preventDefault()
-
+        // @ts-ignore
         switch (selectAction){
             case "Save":
                 localStorage.setItem("saved todos",JSON.stringify(todos))
@@ -40,7 +39,6 @@ const TodosPage = () => {
                 break
         }
     }
-
     return (
             <div className={classes.page__content}>
                 <div className={classes.page__content__navigation}>
@@ -55,7 +53,7 @@ const TodosPage = () => {
                                 {value:"Load saved todos",name:"Load saved todos"}]}/>
                             <IoArrowDown className={classes.select__arrow}/>
                         </div>
-                        <Button onClick={acceptHandler}><IoIosCheckmarkCircle/></Button>
+                        <Button onClick={()=>acceptHandler}><IoIosCheckmarkCircle/></Button>
                     </form>
                     <Button onClick={()=>{
                         setPopUp(true)
