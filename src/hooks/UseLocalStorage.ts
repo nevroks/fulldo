@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 
 interface HookPops {
     method:"get" | "set"
@@ -8,8 +8,8 @@ interface HookPops {
 const UseLocalStorage:FC<HookPops> = ({method,key,value}) => {
     switch (method){
         case "get":
-            const result=JSON.parse(localStorage.getItem(key))
-            return result
+            // @ts-ignore
+            return JSON.parse(localStorage.getItem(key))
         case "set":
             localStorage.setItem(`${key}`,JSON.stringify(value))
             break
