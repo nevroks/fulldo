@@ -1,9 +1,10 @@
-import React from 'react';
 import {Link, NavLink} from "react-router-dom";
 import classes from "./style.module.css";
 import {FaPencilAlt} from "react-icons/fa";
+import useLocalStorage from "../../../hooks/UseLocalStorage.ts";
+
 const Header = () => {
-    const user = JSON.parse(localStorage.getItem("user"))
+    const user = useLocalStorage({method:"get",key:"user"})
     const setActive=({isActive})=>isActive ? classes.active : classes.header__link
     return (
         <header className={classes.header}>
