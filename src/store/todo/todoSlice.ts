@@ -3,7 +3,9 @@ import {ITodo} from "../../types/types.tsx";
 
 
 const initialState:Array<ITodo> = []
-
+type deleteTodoPropsType={
+    id:number
+}
 export const todoSlice = createSlice({
     name: 'todo',
     initialState,
@@ -11,11 +13,11 @@ export const todoSlice = createSlice({
         addTodo:(state,action:PayloadAction<ITodo>)=>{
             state.push(action.payload)
         },
-        addLoadedTodos:(state,action:PayloadAction<ITodo[]>)=>{
-            action.payload.map(todo=>state.push(todo))
+        addLoadedTodos: (state,{payload}:PayloadAction<ITodo[]>)=>{
+            payload.map(todo=>state.push(todo))
         },
-        deleteTodo:(state,action:PayloadAction<ITodo>)=>{
-            let index = action.payload.id;
+        deleteTodo:(state,{payload}:PayloadAction<deleteTodoPropsType>)=>{
+            let index = payload.id;
             state.splice(index,1)
         },
         changeTodo:(state,{payload}:PayloadAction<ITodo>)=>{
