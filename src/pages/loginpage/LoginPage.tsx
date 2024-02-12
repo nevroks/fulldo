@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {toggleAuth} from "../../store/auth/authSlice.ts";
 import {IUser} from "../../types/types.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
-import useLocalStorage from "../../hooks/UseLocalStorage.tsx";
+import useLocalStorage from "../../hooks/UseLocalStorage.ts";
 
 
 const LoginPage:FC = () => {
