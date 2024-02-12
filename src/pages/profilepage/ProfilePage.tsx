@@ -5,7 +5,7 @@ import {IUser} from "../../types/types.tsx";
 import Input from "../../components/ui/input/Input.tsx";
 import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 import Button2 from "../../components/ui/button/Button2.tsx";
-import UseLocalStorage from "../../hooks/UseLocalStorage.tsx";
+import UseLocalStorage from "../../hooks/UseLocalStorage.ts";
 import {IoLogOutSharp} from "react-icons/io5";
 
 
