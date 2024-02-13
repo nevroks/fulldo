@@ -40,6 +40,7 @@ const TodosPage = () => {
                 break
         }
     }
+    // @ts-ignore
     return (
             <div className={classes.page__content}>
                 <div className={classes.page__content__navigation}>
@@ -54,7 +55,7 @@ const TodosPage = () => {
                                 {value:"Load saved todos",name:"Load saved todos"}]}/>
                             <IoArrowDown className={classes.select__arrow}/>
                         </div>
-                        <Button onClick={()=>acceptHandler}><IoIosCheckmarkCircle/></Button>
+                        <Button onClick={acceptHandler}><IoIosCheckmarkCircle/></Button>
                     </form>
                     <Button onClick={()=>{
                         setPopUp(true)
