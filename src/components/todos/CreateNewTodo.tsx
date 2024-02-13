@@ -6,7 +6,7 @@ import {ITodo} from "../../types/types.tsx";
 import {useAppDispatch} from "../../hooks/reduxHooks.ts";
 const CreateNewTodoPropsType={
     todos:Array<ITodo>,
-    setPopUp:()=>void;
+    setPopUp:()=>void
 }
 const CreateNewTodo:FC<CreateNewTodoPropsType> = ({todos,setPopUp}) => {
     const dispatch=useAppDispatch()

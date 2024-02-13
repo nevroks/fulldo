@@ -5,7 +5,7 @@ import useLocalStorage from "../../../hooks/UseLocalStorage.ts";
 
 const Header = () => {
     const user = useLocalStorage({method:"get",key:"user"})
-    const setActive=({isActive})=>isActive ? classes.active : classes.header__link
+    const setActive:({isActive:boolean})=>void=({isActive})=>isActive ? classes.active : classes.header__link
     return (
         <header className={classes.header}>
             <nav className={classes.header__content}>
