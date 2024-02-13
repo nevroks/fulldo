@@ -1,12 +1,13 @@
-import React, {FC, useState} from 'react';
+import {FC, useState} from 'react';
 import Input from "../ui/input/Input.tsx";
 import Button from "../ui/button/Button.tsx";
 import {addTodo} from "../../store/todo/todoSlice.ts";
 import {ITodo} from "../../types/types.tsx";
 import {useAppDispatch} from "../../hooks/reduxHooks.ts";
-const CreateNewTodoPropsType={
-    todos:Array<ITodo>,
-    setPopUp:()=>void
+
+interface CreateNewTodoPropsType {
+    setPopUp: (a:boolean) => void,
+    todos: Array<ITodo>
 }
 const CreateNewTodo:FC<CreateNewTodoPropsType> = ({todos,setPopUp}) => {
     const dispatch=useAppDispatch()

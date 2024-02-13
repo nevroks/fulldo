@@ -35,6 +35,7 @@ const TodosPage = () => {
                     alert("There is no saved todos")
                     return
                 }
+                // @ts-ignore
                 dispatch(addLoadedTodos(loadedTodos))
                 break
         }

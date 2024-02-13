@@ -13,7 +13,7 @@ export const todoSlice = createSlice({
         addTodo:(state,action:PayloadAction<ITodo>)=>{
             state.push(action.payload)
         },
-        addLoadedTodos: (state,{payload}:PayloadAction<ITodo[]>)=>{
+        addLoadedTodos: state=>{
             payload.map(todo=>state.push(todo))
         },
         deleteTodo:(state,{payload}:PayloadAction<deleteTodoPropsType>)=>{
