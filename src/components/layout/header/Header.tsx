@@ -4,8 +4,10 @@ import {FaPencilAlt} from "react-icons/fa";
 import useLocalStorage from "../../../hooks/UseLocalStorage.ts";
 
 const Header = () => {
-    const user = useLocalStorage({method:"get",key:"user"})
-    const setActive:({isActive:boolean})=>void=({isActive})=>isActive ? classes.active : classes.header__link
+    // @ts-ignore
+    const {login: login} = useLocalStorage({method: "get", key: "user"})
+    // @ts-ignore
+    const setActive:({isActive:boolean})=>string=({isActive})=>isActive ? classes.active : classes.header__link
     return (
         <header className={classes.header}>
             <nav className={classes.header__content}>
@@ -14,7 +16,7 @@ const Header = () => {
                     <NavLink className={setActive} to={"/todos"}>Todos</NavLink>
                 </div>
                 <div className={classes.header__profile}>
-                    <h3>Hello "{user.login}"!</h3>
+                    <h3>Hello "{login}"!</h3>
                     <Link to={"/profile"}><FaPencilAlt /></Link>
                 </div>
             </nav>
