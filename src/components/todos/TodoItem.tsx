@@ -9,6 +9,7 @@ import {ITodo} from "../../types/types.tsx";
 const TodoItem:FC<ITodo> = ({id,description,title}) => {
     const dispatch=useAppDispatch()
 
+    // @ts-ignore
     const todo=useAppSelector(state => state.todo[id])
     let checked=todo.completed
     const handleChange=()=>{
